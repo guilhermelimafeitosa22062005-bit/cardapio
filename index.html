@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cardápio</title>
+</head>
+<body>
+
+<section>
+<h2>🍔 Hambúrgueres</h2>
+<button onclick="add('X-Burger',9)">X-Burger — R$ 9</button><br>
+<button onclick="add('X-Calabresa',11)">X-Calabresa — R$ 11</button><br>
+<button onclick="add('X-Frango',12)">X-Frango — R$ 12</button><br>
+<button onclick="add('X-Tudo',15)">X-Tudo — R$ 15</button>
+</section>
+
+<br>
+<section>
+<h2>🍕 Pizzas</h2>
+<button onclick="add('Pizza P Mussarela',18)">Pizza P Mussarela — R$ 18</button><br>
+<button onclick="add('Pizza P Calabresa',20)">Pizza P Calabresa — R$ 20</button><br>
+<button onclick="add('Pizza G Mussarela',30)">Pizza G Mussarela — R$ 30</button><br>
+<button onclick="add('Pizza G Calabresa',32)">Pizza G Calabresa — R$ 32</button>
+</section>
+
+<br>
+
+<section>
+<h2>🥟 Pastéis</h2>
+<button onclick="add('Pastel Carne',8)">Pastel Carne — R$ 8</button><br>
+<button onclick="add('Pastel Queijo',8)">Pastel Queijo — R$ 8</button><br>
+<button onclick="add('Pastel Frango',9)">Pastel Frango — R$ 9</button>
+</section>
+
+<br>
+
+<section>
+<h2>🌮 Tapiocas</h2>
+<button onclick="add('Tapioca Queijo',7)">Tapioca Queijo — R$ 7</button><br>
+<button onclick="add('Tapioca Frango',9)">Tapioca Frango — R$ 9</button>
+</section>
+
+<section>
+<h2>🛒 Pedido</h2>
+
+<label>Nome:</label><br>
+<input id="nome"><br><br>
+
+<label>Endereço:</label><br>
+<input id="endereco"><br><br>
+
+<label>Pagamento:</label><br>
+<select id="pagamento" onchange="mostrarTroco()">
+<option value="Pix">Pix</option>
+<option value="Cartão">Cartão</option>
+<option value="Dinheiro">Dinheiro</option>
+</select><br><br>
+
+<div id="trocoBox" style="display:none">
+<label>Troco para:</label><br>
+<input id="troco"><br><br>
+</div>
+
+<label>Observações:</label><br>
+<textarea id="obs"></textarea><br><br>
+
+<ul id="lista"></ul>
+
+<strong>Total: R$ <span id="total">0</span></strong><br><br>
+<button onclick="finalizar()">Finalizar no WhatsApp</button>
+</section>
+
+<script>
+let pedido = [];
+
+/* adiciona item */
+function add(nome, valor) {
+  let item = pedido.find(i => i.nome === nome && i.valor === valor);
+  if (item) item.qtd++;
+  else pedido.push({ nome, valor, qtd: 1 });
+  atualizar();
+}
+
+/* atualiza lista */
+function atualizar() {
+  let lista = document.getElementById("lista");
+  lista.innerHTML = "";
+  let total = 0;
+
+  pedido.forEach((item, index) => {
+    total += item.valor * item.qtd;
+
+    let li = document.createElement("li");
+    li.innerHTML = `
+      ${item.qtd}x ${item.nome} — R$ ${(item.valor * item.qtd).toFixed(2)}
+      <button onclick="menos(${index})">➖</button>
+      <button onclick="mais(${index})">➕</button>
+      <button onclick="remover(${index})">❌</button>
+    `;
+    lista.appendChild(li);
+  });
+
+  document.getElementById("total").textContent = total.toFixed(2);
+}
+
+/* botões */
+function mais(i){
+  pedido[i].qtd++;
+  atualizar();
+}
+
+function menos(i){
+  if (pedido[i].qtd > 1) {
+    pedido[i].qtd--;
+    atualizar();
+  }
+}
+
+function remover(i){
+  pedido.splice(i, 1);
+  atualizar();
+}
+
+/* troco */
+function mostrarTroco(){
+  let pagamento = document.getElementById("pagamento");
+  let trocoBox = document.getElementById("trocoBox");
+  trocoBox.style.display = pagamento.value === "Dinheiro" ? "block" : "none";
+}
+
+/* finalizar */
+function finalizar(){
+  let nome = document.getElementById("nome").value;
+  let endereco = document.getElementById("endereco").value;
+  let pag = document.getElementById("pagamento").value;
+  let troco = document.getElementById("troco").value;
+  let obs = document.getElementById("obs").value;
+
+  let texto = `PEDIDO – Arretado de Bom Lanches\n\n`;
+  texto += `Cliente: ${nome}\nEndereço: ${endereco}\nPagamento: ${pag}\n`;
+  if(pag === "Dinheiro") texto += `Troco para: R$ ${troco}\n`;
+  texto += `\nItens:\n`;
+
+  let total = 0;
+  pedido.forEach(i=>{
+    total += i.valor * i.qtd;
+    texto += `${i.qtd}x ${i.nome} — R$ ${(i.valor*i.qtd).toFixed(2)}\n`;
+  });
+
+  texto += `\nObservações:\n${obs}\n\nTotal: R$ ${total.toFixed(2)}`;
+
+  window.open("https://wa.me/5588981663695?text="+encodeURIComponent(texto));
+}
+</script>
