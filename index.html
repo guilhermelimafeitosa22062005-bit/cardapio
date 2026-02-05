@@ -167,79 +167,50 @@ Arretada — R$ 16,00
 <br>
 
 <section>
-<h2>🍕 Pizza Grande (G)</h2>
+<h2>🍕 Pizza Grande (G) – até 2 sabores</h2>
 
-<button onclick="add('Pizza G Calabresa',27)">
-Calabresa — R$ 27,00
-</button><br>
-<small>
-Massa, molho, mussarela, calabresa, milho, tomate, cebola, azeitona e orégano
-</small>
+<label><b>Metade 1</b></label><br>
+<select id="g1" onchange="mostrarIngredientes()">
+  <option value="27" data-ing="Massa, molho, mussarela, calabresa, milho, tomate, cebola, azeitona e orégano">
+    Calabresa — R$ 27
+  </option>
+  <option value="27" data-ing="Massa, molho, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Mussarela — R$ 27
+  </option>
+  <option value="28" data-ing="Massa, molho, frango, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Frango — R$ 28
+  </option>
+  <option value="30" data-ing="Massa, molho, frango, presunto, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Moda da Casa — R$ 30
+  </option>
+</select>
+<br>
+<small id="ing1"></small>
+
 <br><br>
 
-<button onclick="add('Pizza G Mussarela',27)">
-Mussarela — R$ 27,00
-</button><br>
-<small>
-Massa, molho, mussarela, milho, tomate, cebola, azeitona e orégano
-</small>
+<label><b>Metade 2</b></label><br>
+<select id="g2" onchange="mostrarIngredientes()">
+  <option value="27" data-ing="Massa, molho, mussarela, calabresa, milho, tomate, cebola, azeitona e orégano">
+    Calabresa — R$ 27
+  </option>
+  <option value="27" data-ing="Massa, molho, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Mussarela — R$ 27
+  </option>
+  <option value="28" data-ing="Massa, molho, frango, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Frango — R$ 28
+  </option>
+  <option value="30" data-ing="Massa, molho, frango, presunto, mussarela, milho, tomate, cebola, azeitona e orégano">
+    Moda da Casa — R$ 30
+  </option>
+</select>
+<br>
+<small id="ing2"></small>
+
 <br><br>
 
-<button onclick="add('Pizza G Frango',28)">
-Frango — R$ 28,00
-</button><br>
-<small>
-Massa, molho, frango, mussarela, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G Moda da Casa',30)">
-Moda da Casa — R$ 30,00
-</button><br>
-<small>
-Massa, molho, frango, presunto, mussarela, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G Bacon',31)">
-Bacon — R$ 31,00
-</button><br>
-<small>
-Massa, molho, mussarela, bacon, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G Carne de Sol',32)">
-Carne de Sol — R$ 32,00
-</button><br>
-<small>
-Massa, molho, carne de sol, mussarela, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G Cangaceira',32)">
-Cangaceira — R$ 32,00
-</button><br>
-<small>
-Massa, molho, carne de sol, mussarela, bacon, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G FranBacon',32)">
-FranBacon — R$ 32,00
-</button><br>
-<small>
-Massa, molho, frango, mussarela, bacon, milho, tomate, cebola, azeitona e orégano
-</small>
-<br><br>
-
-<button onclick="add('Pizza G Arretada',32)">
-Arretada — R$ 32,00
-</button><br>
-<small>
-Massa, molho, frango, presunto, mussarela, calabresa, milho, tomate, cebola, azeitona e orégano
-</small>
-
+<button onclick="addPizzaG()">Adicionar Pizza G</button>
+<p><small>*Valor calculado pela média dos dois sabores</small></p>
 </section>
 
 <br>
@@ -378,4 +349,18 @@ function finalizar(){
 
   window.open("https://wa.me/5588981663695?text=" + encodeURIComponent(texto));
 }
+  function mostrarIngredientes() {
+  let s1 = document.getElementById("g1");
+  let s2 = document.getElementById("g2");
+
+  document.getElementById("ing1").textContent =
+    s1.options[s1.selectedIndex].dataset.ing;
+
+  document.getElementById("ing2").textContent =
+    s2.options[s2.selectedIndex].dataset.ing;
+}
+
+/* mostra ingredientes ao abrir a página */
+mostrarIngredientes();
+
 </script>
