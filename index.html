@@ -64,25 +64,39 @@ Arretada — R$ 16,00
 <br>
 
 <section>
-<h2>🍕 Pizza Grande (2 sabores)</h2>
+<h2>🍕 Pizza Grande (G) – até 2 sabores</h2>
 
-<select id="s1">
-  <option value="30">Mussarela — R$ 30</option>
-  <option value="32">Calabresa — R$ 32</option>
-  <option value="35">Frango — R$ 35</option>
+<select id="g1">
+  <option value="27">Calabresa — R$ 27</option>
+  <option value="27">Mussarela — R$ 27</option>
+  <option value="28">Frango — R$ 28</option>
+  <option value="30">Moda da Casa — R$ 30</option>
+  <option value="31">Bacon — R$ 31</option>
+  <option value="32">Cangaceira — R$ 32</option>
+  <option value="32">Carne de Sol — R$ 32</option>
+  <option value="32">FranBacon — R$ 32</option>
+  <option value="32">Arretada — R$ 32</option>
 </select>
 
 <br><br>
 
-<select id="s2">
-  <option value="30">Mussarela — R$ 30</option>
-  <option value="32">Calabresa — R$ 32</option>
-  <option value="35">Frango — R$ 35</option>
+<select id="g2">
+  <option value="27">Calabresa — R$ 27</option>
+  <option value="27">Mussarela — R$ 27</option>
+  <option value="28">Frango — R$ 28</option>
+  <option value="30">Moda da Casa — R$ 30</option>
+  <option value="31">Bacon — R$ 31</option>
+  <option value="32">Cangaceira — R$ 32</option>
+  <option value="32">Carne de Sol — R$ 32</option>
+  <option value="32">FranBacon — R$ 32</option>
+  <option value="32">Arretada — R$ 32</option>
 </select>
 
 <br><br>
 
 <button onclick="addPizzaG()">Adicionar Pizza G</button>
+
+<p><small>*Valor calculado pela média dos dois sabores escolhidos</small></p>
 </section>
 
 <br>
@@ -216,4 +230,27 @@ function finalizar(){
 
   window.open("https://wa.me/5588981663695?text="+encodeURIComponent(texto));
 }
+  <script>
+function addPizzaG() {
+  let s1 = document.getElementById("g1");
+  let s2 = document.getElementById("g2");
+
+  let sabor1 = s1.options[s1.selectedIndex].text;
+  let sabor2 = s2.options[s2.selectedIndex].text;
+
+  let preco1 = Number(s1.value);
+  let preco2 = Number(s2.value);
+
+  let precoFinal = (preco1 + preco2) / 2;
+
+  let nome = `Pizza G (${sabor1} + ${sabor2})`;
+
+  let item = pedido.find(i => i.nome === nome);
+  if (item) item.qtd++;
+  else pedido.push({ nome, valor: precoFinal, qtd: 1 });
+
+  atualizar();
+}
+</script>
+
 </script>
