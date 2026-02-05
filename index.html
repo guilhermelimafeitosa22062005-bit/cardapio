@@ -15,13 +15,6 @@
 </section>
 
 <br>
-<section>
-<h2>🍕 Pizzas</h2>
-<button onclick="add('Pizza P Mussarela',18)">Pizza P Mussarela — R$ 18</button><br>
-<button onclick="add('Pizza P Calabresa',20)">Pizza P Calabresa — R$ 20</button><br>
-<button onclick="add('Pizza G Mussarela',30)">Pizza G Mussarela — R$ 30</button><br>
-<button onclick="add('Pizza G Calabresa',32)">Pizza G Calabresa — R$ 32</button>
-</section>
 
 <br>
 
@@ -39,6 +32,38 @@
 <button onclick="add('Tapioca Queijo',7)">Tapioca Queijo — R$ 7</button><br>
 <button onclick="add('Tapioca Frango',9)">Tapioca Frango — R$ 9</button>
 </section>
+<section>
+<h2>🍕 Pizzas Pequenas (1 sabor)</h2>
+<button onclick="add('Pizza P Mussarela',18)">Mussarela — R$ 18</button><br>
+<button onclick="add('Pizza P Calabresa',20)">Calabresa — R$ 20</button><br>
+<button onclick="add('Pizza P Frango',22)">Frango — R$ 22</button>
+</section>
+
+<br>
+
+<section>
+<h2>🍕 Pizza Grande (2 sabores)</h2>
+
+<select id="s1">
+  <option value="30">Mussarela — R$ 30</option>
+  <option value="32">Calabresa — R$ 32</option>
+  <option value="35">Frango — R$ 35</option>
+</select>
+
+<br><br>
+
+<select id="s2">
+  <option value="30">Mussarela — R$ 30</option>
+  <option value="32">Calabresa — R$ 32</option>
+  <option value="35">Frango — R$ 35</option>
+</select>
+
+<br><br>
+
+<button onclick="addPizzaG()">Adicionar Pizza G</button>
+</section>
+
+<br>
 
 <section>
 <h2>🛒 Pedido</h2>
@@ -69,9 +94,27 @@
 <strong>Total: R$ <span id="total">0</span></strong><br><br>
 <button onclick="finalizar()">Finalizar no WhatsApp</button>
 </section>
+  
 
 <script>
 let pedido = [];
+function addPizzaG() {
+  let s1 = document.getElementById("s1");
+  let s2 = document.getElementById("s2");
+
+  let sabor1 = s1.options[s1.selectedIndex].text;
+  let sabor2 = s2.options[s2.selectedIndex].text;
+
+  let preco = Math.max(Number(s1.value), Number(s2.value));
+
+  let nome = `Pizza G (${sabor1} + ${sabor2})`;
+
+  let item = pedido.find(i => i.nome === nome);
+  if (item) item.qtd++;
+  else pedido.push({ nome, valor: preco, qtd: 1 });
+
+  atualizar();
+}
 
 /* adiciona item */
 function add(nome, valor) {
