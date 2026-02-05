@@ -156,25 +156,30 @@ Arretada — R$ 16,00
 
 <script>
 let pedido = [];
+
+/* adicionar pizza grande */
 function addPizzaG() {
-  let s1 = document.getElementById("s1");
-  let s2 = document.getElementById("s2");
+  let s1 = document.getElementById("g1");
+  let s2 = document.getElementById("g2");
 
   let sabor1 = s1.options[s1.selectedIndex].text;
   let sabor2 = s2.options[s2.selectedIndex].text;
 
-  let preco = (Number(s1.value) + Number(s2.value)) / 2;
+  let preco1 = Number(s1.value);
+  let preco2 = Number(s2.value);
+
+  let precoFinal = (preco1 + preco2) / 2;
 
   let nome = `Pizza G (${sabor1} + ${sabor2})`;
 
   let item = pedido.find(i => i.nome === nome);
   if (item) item.qtd++;
-  else pedido.push({ nome, valor: preco, qtd: 1 });
+  else pedido.push({ nome, valor: precoFinal, qtd: 1 });
 
   atualizar();
 }
 
-/* adiciona item */
+/* adicionar item normal */
 function add(nome, valor) {
   let item = pedido.find(i => i.nome === nome && i.valor === valor);
   if (item) item.qtd++;
@@ -182,7 +187,7 @@ function add(nome, valor) {
   atualizar();
 }
 
-/* atualiza lista */
+/* atualizar lista */
 function atualizar() {
   let lista = document.getElementById("lista");
   lista.innerHTML = "";
@@ -204,7 +209,7 @@ function atualizar() {
   document.getElementById("total").textContent = total.toFixed(2);
 }
 
-/* botões */
+/* controles */
 function mais(i){
   pedido[i].qtd++;
   atualizar();
@@ -224,12 +229,12 @@ function remover(i){
 
 /* troco */
 function mostrarTroco(){
-  let pagamento = document.getElementById("pagamento");
-  let trocoBox = document.getElementById("trocoBox");
-  trocoBox.style.display = pagamento.value === "Dinheiro" ? "block" : "none";
+  let pagamento = document.getElementById("pagamento").value;
+  document.getElementById("trocoBox").style.display =
+    pagamento === "Dinheiro" ? "block" : "none";
 }
 
-/* finalizar */
+/* finalizar pedido */
 function finalizar(){
   let nome = document.getElementById("nome").value;
   let endereco = document.getElementById("endereco").value;
@@ -250,29 +255,6 @@ function finalizar(){
 
   texto += `\nObservações:\n${obs}\n\nTotal: R$ ${total.toFixed(2)}`;
 
-  window.open("https://wa.me/5588981663695?text="+encodeURIComponent(texto));
+  window.open("https://wa.me/5588981663695?text=" + encodeURIComponent(texto));
 }
-  <script>
-function addPizzaG() {
-  let s1 = document.getElementById("g1");
-  let s2 = document.getElementById("g2");
-
-  let sabor1 = s1.options[s1.selectedIndex].text;
-  let sabor2 = s2.options[s2.selectedIndex].text;
-
-  let preco1 = Number(s1.value);
-  let preco2 = Number(s2.value);
-
-  let precoFinal = (preco1 + preco2) / 2;
-
-  let nome = `Pizza G (${sabor1} + ${sabor2})`;
-
-  let item = pedido.find(i => i.nome === nome);
-  if (item) item.qtd++;
-  else pedido.push({ nome, valor: precoFinal, qtd: 1 });
-
-  atualizar();
-}
-</script>
-
 </script>
