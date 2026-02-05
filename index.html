@@ -32,11 +32,33 @@
 <button onclick="add('Tapioca Queijo',7)">Tapioca Queijo — R$ 7</button><br>
 <button onclick="add('Tapioca Frango',9)">Tapioca Frango — R$ 9</button>
 </section>
+  
 <section>
-<h2>🍕 Pizzas Pequenas (1 sabor)</h2>
-<button onclick="add('Pizza P Mussarela',18)">Mussarela — R$ 18</button><br>
-<button onclick="add('Pizza P Calabresa',20)">Calabresa — R$ 20</button><br>
-<button onclick="add('Pizza P Frango',22)">Frango — R$ 22</button>
+<h2>🍕 Pizza Pequena (1 sabor)</h2>
+
+<button onclick="add('Pizza P Frango',12)">
+Frango — R$ 12,00
+</button><br>
+<small>Massa, molho, frango, mussarela, tomate, cebola e orégano</small>
+<br><br>
+
+<button onclick="add('Pizza P Calabresa',12)">
+Calabresa — R$ 12,00
+</button><br>
+<small>Massa, molho, mussarela, calabresa, tomate, cebola e orégano</small>
+<br><br>
+
+<button onclick="add('Pizza P Moda da Casa',14)">
+Moda da Casa — R$ 14,00
+</button><br>
+<small>Massa, molho, frango, presunto, mussarela, tomate, cebola e orégano</small>
+<br><br>
+
+<button onclick="add('Pizza P Arretada',16)">
+Arretada — R$ 16,00
+</button><br>
+<small>Massa, molho, frango, presunto, mussarela, calabresa, tomate, cebola e orégano</small>
+
 </section>
 
 <br>
@@ -105,7 +127,7 @@ function addPizzaG() {
   let sabor1 = s1.options[s1.selectedIndex].text;
   let sabor2 = s2.options[s2.selectedIndex].text;
 
-  let preco = Math.max(Number(s1.value), Number(s2.value));
+  let preco = (Number(s1.value) + Number(s2.value)) / 2;
 
   let nome = `Pizza G (${sabor1} + ${sabor2})`;
 
