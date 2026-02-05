@@ -250,8 +250,20 @@ Arretada — R$ 16,00
 <label>Nome:</label><br>
 <input id="nome"><br><br>
 
-<label>Endereço:</label><br>
-<input id="endereco"><br><br>
+<label>Rua:</label><br>
+<input id="rua" placeholder="Ex: Rua João Alves"><br><br>
+
+<label>Número:</label><br>
+<input id="numero" placeholder="Ex: 123"><br><br>
+
+<label>Bairro:</label><br>
+<select id="bairro">
+  <option value="">Selecione o bairro</option>
+  <option value="Centro">Centro</option>
+  <option value="Vila Nova">Vila Nova</option>
+  <option value="Bairro X">Bairro X</option>
+  <option value="Bairro Y">Bairro Y</option>
+</select><br><br>
 
 <label>Pagamento:</label><br>
 <select id="pagamento" onchange="mostrarTroco()">
@@ -358,13 +370,19 @@ function mostrarTroco(){
 /* finalizar pedido */
 function finalizar(){
   let nome = document.getElementById("nome").value;
-  let endereco = document.getElementById("endereco").value;
+ let rua = document.getElementById("rua").value;
+let numero = document.getElementById("numero").value;
+let bairro = document.getElementById("bairro").value;
+if (!rua || !numero || !bairro) {
+  alert("⚠️ Preencha rua, número e bairro.");
+  return;
+}
   let pag = document.getElementById("pagamento").value;
   let troco = document.getElementById("troco").value;
   let obs = document.getElementById("obs").value;
 
   let texto = `PEDIDO – Arretado de Bom Lanches\n\n`;
-  texto += `Cliente: ${nome}\nEndereço: ${endereco}\nPagamento: ${pag}\n`;
+  texto += `Cliente: ${nome}\nEndereço: ${rua}, Nº ${numero} - ${bairro}\nPagamento: ${pag}\n`;
   if(pag === "Dinheiro") texto += `Troco para: R$ ${troco}\n`;
   texto += `\nItens:\n`;
 
