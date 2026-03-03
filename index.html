@@ -139,8 +139,13 @@ small {
       <span>⏰ Ter–Dom • 18h às 21:30h</span>
   </div>
 </header>
-
-<section>
+<div class="abas">
+  <button onclick="mostrarAba('hamburguer')">🍔 Hambúrguer</button>
+  <button onclick="mostrarAba('pizza')">🍕 Pizza</button>
+  <button onclick="mostrarAba('pastel')">🥟 Pastel</button>
+</div>
+  
+<section id="hamburguer">
 <h2>🍔 Hambúrgueres</h2>
 <button onclick="add('X-Burger',9)">
 X-Burger — R$ 9,00
@@ -193,7 +198,7 @@ Pão, hambúrguer, presunto, mussarela, bacon, ovo, tomate, cebola e molho
 
 <br>
 
-<section>
+<section id="pastel" style="display:none;">
 <h2>🥟 Pastéis</h2>
 <button onclick="add('Pastel Carne',8)">Pastel Carne — R$ 8</button><br>
 <button onclick="add('Pastel Queijo',8)">Pastel Queijo — R$ 8</button><br>
@@ -238,7 +243,7 @@ Arretada — R$ 16,00
 
 <br>
 
-<section>
+<section id="pizza" style="display:none;">
 <h2>🍕 Pizza Grande (G) – até 2 sabores</h2>
 
 <label><b>Metade 1</b></label><br>
