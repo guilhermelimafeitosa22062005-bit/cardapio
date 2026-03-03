@@ -100,6 +100,25 @@ section {
   border-radius: 50%;
   font-size: 14px;
 }
+  .modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-conteudo {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
 </style>
 </head>
 <body>
@@ -305,7 +324,16 @@ Arretada — R$ 16,00
 <br>
 
 <section>
-<h2>🛒 Pedido</h2>
+<div id="modalPedido" class="modal">
+  <div class="modal-conteudo">
+    <h2>🧾 Seu Pedido</h2>
+    <ul id="lista"></ul>
+    <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
+
+    <button onclick="enviar()">Finalizar Pedido</button>
+    <button onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
 
 <label>Nome:</label><br>
 <input id="nome"><br><br>
@@ -494,10 +522,8 @@ function mostrarAba(aba, botao) {
 
   botao.classList.add("ativo");
 }
-  function irParaPedido() {
-  document.getElementById("nome").scrollIntoView({
-    behavior: "smooth"
-  });
+  function fecharModal() {
+  document.getElementById("modalPedido").style.display = "none";
 }
   
 </script>
