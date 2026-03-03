@@ -119,17 +119,27 @@ section {
   max-height: 80vh;
   overflow-y: auto;
 }
+  .topo {
+  background: linear-gradient(135deg, #d32f2f, #ff3d3d);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.logo-area img {
+  width: 220px;
+  max-width: 90%;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
 </style>
 </head>
 <body>
-  <header class="topo">
-
-    <div class="texto-topo">
-      <img src="nome.PNG" alt="Arretado de Bom Lanches" class="nome-img">
-      <p>🍔 Lanches • 🍕 Pizzas • 🥟 Pastéis</p>
-      <span>⏰ Ter–Dom • 18h às 21:30h</span>
+  
+ <header class="topo">
+  <div class="logo-area">
+    <img src="nome.PNG" alt="Arretado de Bom Lanches">
   </div>
 </header>
+  
 <div class="abas">
 <button onclick="mostrarAba('hamburguer', this)" class="ativo">🍔 Hambúrguer</button>
 <button onclick="mostrarAba('pizza', this)">🍕 Pizza</button>
