@@ -330,11 +330,10 @@ Arretada — R$ 16,00
     <ul id="lista"></ul>
     <p><strong>Total: R$ <span id="total">0.00</span></strong></p>
 
-    <button onclick="enviar()">Finalizar Pedido</button>
+    <button onclick="finalizar()">Finalizar Pedido</button>
     <button onclick="fecharModal()">Fechar</button>
   </div>
 </div>
-
 <label>Nome:</label><br>
 <input id="nome"><br><br>
 
@@ -525,7 +524,9 @@ function mostrarAba(aba, botao) {
   function fecharModal() {
   document.getElementById("modalPedido").style.display = "none";
 }
-  
+  function irParaPedido() {
+  document.getElementById("modalPedido").style.display = "flex";
+}
 </script>
   
 <div class="carrinho-flutuante" id="carrinhoBtn" onclick="irParaPedido()">
