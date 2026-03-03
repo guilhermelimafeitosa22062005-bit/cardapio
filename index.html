@@ -191,11 +191,7 @@ Pão, hambúrguer, presunto, mussarela, bacon, ovo, tomate, cebola e molho
 </small>
 
 </section>
-
-</section>
-
 <br>
-
 <br>
 
 <section id="pastel" style="display:none;">
@@ -487,5 +483,11 @@ if (!rua || !numero || !bairro) {
 
 /* mostra ingredientes ao abrir a página */
 mostrarIngredientes();
+function mostrarAba(aba) {
+  document.getElementById("hamburguer").style.display = "none";
+  document.getElementById("pizza").style.display = "none";
+  document.getElementById("pastel").style.display = "none";
 
+  document.getElementById(aba).style.display = "block";
+}
 </script>
