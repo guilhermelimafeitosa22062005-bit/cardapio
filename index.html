@@ -76,6 +76,30 @@ section {
   border-radius: 6px;
   cursor: pointer;
 }
+  .carrinho-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #d32f2f;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-weight: bold;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+}
+
+.carrinho-flutuante span {
+  background: white;
+  color: #d32f2f;
+  padding: 2px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+}
 </style>
 </head>
 <body>
@@ -360,9 +384,11 @@ function atualizar() {
   let lista = document.getElementById("lista");
   lista.innerHTML = "";
   let total = 0;
+  let totalItens = 0;
 
   pedido.forEach((item, index) => {
     total += item.valor * item.qtd;
+    totalItens += item.qtd;
 
     let li = document.createElement("li");
     li.innerHTML = `
@@ -375,6 +401,18 @@ function atualizar() {
   });
 
   document.getElementById("total").textContent = total.toFixed(2);
+
+  let carrinho = document.getElementById("carrinhoBtn");
+  let totalCarrinho = document.getElementById("totalCarrinho");
+  let contador = document.getElementById("contadorItens");
+
+  if (totalItens > 0) {
+    carrinho.style.display = "flex";
+    totalCarrinho.textContent = total.toFixed(2);
+    contador.textContent = totalItens;
+  } else {
+    carrinho.style.display = "none";
+  }
 }
 
 /* controles */
@@ -456,4 +494,16 @@ function mostrarAba(aba, botao) {
 
   botao.classList.add("ativo");
 }
+  function irParaPedido() {
+  document.getElementById("nome").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+  
 </script>
+  
+<div class="carrinho-flutuante" id="carrinhoBtn" onclick="irParaPedido()">
+  🛒 R$ <span id="totalCarrinho">0</span>
+  <span id="contadorItens">0</span>
+</div>
+  
