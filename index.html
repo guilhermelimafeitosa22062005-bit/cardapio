@@ -572,12 +572,6 @@ if (!rua || !numero || !bairro) {
   if(pag === "Dinheiro") texto += `Troco para: R$ ${troco}\n`;
   texto += `\nItens:\n`;
 
-  let total = 0;
-  pedido.forEach(i=>{
-    total += i.valor * i.qtd;
-    texto += `${i.qtd}x ${i.nome} — R$ ${(i.valor*i.qtd).toFixed(2)}\n`;
-  });
-
   texto += `\nObservações:\n${obs}\n\nTotal: R$ ${total.toFixed(2)}`;
 
   window.open("https://wa.me/5588981663695?text=" + encodeURIComponent(texto));
