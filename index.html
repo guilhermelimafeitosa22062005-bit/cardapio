@@ -12,16 +12,22 @@
 
 body {
   margin: 0;
-  background: #f4f4f4;
   padding: 15px;
+  background-color: #f7f7f7;
+  font-family: Arial, Helvetica, sans-serif;
 }
   .topo {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  background: #e74c3c;
   color: white;
   text-align: center;
   padding: 20px 15px;
   border-radius: 0 0 20px 20px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.nome-img {
+  max-width: 220px;
+  margin-bottom: 8px;
 }
 .nome-img {
   max-width: 250px;
@@ -38,35 +44,41 @@ body {
 }
 
 section {
-  background: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #ffffff;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+section:hover {
+  transform: translateY(-3px);
 }
 
 h2 {
   margin-top: 0;
-  color: #c0392b;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
+  padding: 14px;
+  margin-top: 10px;
   border: none;
-  border-radius: 8px;
-  background: #27ae60;
-  color: #fff;
-  font-size: 16px;
+  border-radius: 10px;
+  background: #e74c3c;
+  color: white;
   font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #219150;
+  background: #c0392b;
 }
 
 select, input, textarea {
@@ -103,6 +115,7 @@ select, input, textarea {
 
 strong {
   font-size: 18px;
+  color: #e74c3c;
 }
 
 section:last-of-type button {
