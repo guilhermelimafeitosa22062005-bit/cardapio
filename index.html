@@ -12,124 +12,72 @@
 
 body {
   margin: 0;
-  padding: 15px;
-  background-color: #f7f7f7;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f2f2;
 }
-  .topo {
-  background: #e74c3c;
+
+header {
+  background: #d32f2f;
   color: white;
+  padding: 20px;
   text-align: center;
-  padding: 20px 15px;
-  border-radius: 0 0 20px 20px;
-  margin-bottom: 20px;
 }
 
-.nome-img {
-  max-width: 220px;
-  margin-bottom: 8px;
+.abas {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  position: sticky;
+  top: 0;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-.nome-img {
-  max-width: 250px;
-  margin-bottom: 10px;
-}
-.topo p {
-  margin: 5px 0;
+
+.abas button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
   font-weight: bold;
+  color: #555;
 }
 
-.topo span {
-  font-size: 14px;
-  opacity: 0.9;
+.abas button.ativo {
+  color: #d32f2f;
+  border-bottom: 3px solid #d32f2f;
 }
 
 section {
-  background: #ffffff;
-  padding: 18px;
-  margin-bottom: 18px;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 15px;
 }
 
-section:hover {
-  transform: translateY(-3px);
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 8px;
-}
-
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  border: none;
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
   border-radius: 10px;
-  background: #e74c3c;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  margin: 0 0 5px 0;
+}
+
+.card small {
+  color: #777;
+}
+
+.card button {
+  margin-top: 10px;
+  background: #d32f2f;
   color: white;
-  font-weight: bold;
-  font-size: 15px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
 }
-
-button:hover {
-  background: #c0392b;
-}
-
-select, input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-#lista {
-  list-style: none;
-  padding: 0;
-}
-
-#lista li {
-  background: #fafafa;
-  padding: 10px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-}
-
-#lista button {
-  width: auto;
-  padding: 6px 10px;
-  font-size: 14px;
-  background: #e67e22;
-}
-
-#lista button:last-child {
-  background: #c0392b;
-}
-
-strong {
-  font-size: 18px;
-  color: #e74c3c;
-}
-
-section:last-of-type button {
-  background: #25D366;
-  font-size: 18px;
-}
-
-small {
-  color: #555;
-}
 </style>
-
 </head>
-
 <body>
   <header class="topo">
 
@@ -140,23 +88,27 @@ small {
   </div>
 </header>
 <div class="abas">
-  <button onclick="mostrarAba('hamburguer')">🍔 Hambúrguer</button>
-  <button onclick="mostrarAba('pizza')">🍕 Pizza</button>
-  <button onclick="mostrarAba('pastel')">🥟 Pastel</button>
+<button onclick="mostrarAba('hamburguer', this)" class="ativo">🍔 Hambúrguer</button>
+<button onclick="mostrarAba('pizza', this)">🍕 Pizza</button>
+<button onclick="mostrarAba('pastel', this)">🥟 Pastel</button>
+<button onclick="mostrarAba('tapioca', this)">🌮 Tapioca</button>
+<button onclick="mostrarAba('pizzaP', this)">🍕 Pizza P</button>  
 </div>
   
 <section id="hamburguer">
 <h2>🍔 Hambúrgueres</h2>
-<button onclick="add('X-Burger',9)">
-X-Burger — R$ 9,00
-</button><br>
-<small>Pão, hambúrguer, mussarela e molho</small>
+<div class="card">
+  <h3>X-Burger - R$ 9,00</h3>
+  <small>Pão, hambúrguer, mussarela e molho</small>
+  <button onclick="add('X-Burger',9)">Adicionar</button>
+</div>
 <br><br>
 
-<button onclick="add('X-Calabresa',11)">
-X-Calabresa — R$ 11,00
-</button><br>
-<small>Pão, hambúrguer, calabresa, mussarela e molho</small>
+<div class="card">
+  <h3>X-Calabresa — R$ 11,00</h3>
+  <small>Pão, hambúrguer, calabresa, mussarela e molho</small>
+  <button onclick="add('X-Calabresa',11)">Adicionar</button>
+</div>
 <br><br>
 
 <button onclick="add('X-Frango',12)">
@@ -203,14 +155,12 @@ Pão, hambúrguer, presunto, mussarela, bacon, ovo, tomate, cebola e molho
 
 <br>
 
-<section>
-<h2>🌮 Tapiocas</h2>
+<section id="tapioca" style="display:none;">
 <button onclick="add('Tapioca Queijo',7)">Tapioca Queijo — R$ 7</button><br>
 <button onclick="add('Tapioca Frango',9)">Tapioca Frango — R$ 9</button>
 </section>
   
-<section>
-<h2>🍕 Pizza Pequena (1 sabor)</h2>
+<section id="pizzaP" style="display:none;">
 
 <button onclick="add('Pizza P Frango',12)">
 Frango — R$ 12,00
@@ -483,11 +433,16 @@ if (!rua || !numero || !bairro) {
 
 /* mostra ingredientes ao abrir a página */
 mostrarIngredientes();
-function mostrarAba(aba) {
-  document.getElementById("hamburguer").style.display = "none";
-  document.getElementById("pizza").style.display = "none";
-  document.getElementById("pastel").style.display = "none";
+function mostrarAba(aba, botao) {
+
+  let secoes = document.querySelectorAll("section[id]");
+  secoes.forEach(sec => sec.style.display = "none");
 
   document.getElementById(aba).style.display = "block";
+
+  let botoes = document.querySelectorAll(".abas button");
+  botoes.forEach(btn => btn.classList.remove("ativo"));
+
+  botao.classList.add("ativo");
 }
 </script>
